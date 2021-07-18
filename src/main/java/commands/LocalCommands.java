@@ -20,9 +20,16 @@ public class LocalCommands {
     public static void registerLocalSlashCommands(CommandListUpdateAction action) {
         List<CommandData> commands = new ArrayList<>();
 
+        // Admin/private commands
         commands.add(
                 new CommandData("update", "Update official channels")
                         .addOption(OptionType.CHANNEL, "channel", "The channel to update", true)
+                        .setDefaultEnabled(false)
+        );
+        commands.add(
+                new CommandData("purge", "Purge channel messages")
+                        .addOption(OptionType.INTEGER, "count",
+                                "The number of messages to purge", true)
                         .setDefaultEnabled(false)
         );
 
@@ -36,9 +43,14 @@ public class LocalCommands {
 
     public static void setCommandPrivileges(List<Command> commands, Guild guild) {
         for (Command command : commands) {
-            if (command.getName().equals("update"))
-                guild.updateCommandPrivilegesById(
+            switch (command.getName()) {
+                case "update" -> guild.updateCommandPrivilegesById(
                         command.getId(), CommandPrivilege.enableUser(314889189856378882L)).queue();
+                case "purge" -> guild.updateCommandPrivilegesById(
+                        command.getIdLong(), CommandPrivilege.enableRole(Bot.ADMIN_ROLE)).queue();
+                default -> {
+                }
+            }
         }
     }
 

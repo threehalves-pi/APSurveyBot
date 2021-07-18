@@ -67,6 +67,7 @@ public class Bot {
     public static long BOT_ID;
     public static long DEVELOPMENT_GUILD_ID;
     public static long LOG_CHANNEL;
+    public static long ADMIN_ROLE;
 
     // Discord entities
     public static Guild DEVELOPMENT_GUILD;
