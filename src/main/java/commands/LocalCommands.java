@@ -13,13 +13,8 @@ public class LocalCommands {
     public static void registerLocalSlashCommands(CommandListUpdateAction action) {
         List<CommandData> commands = new ArrayList<>();
 
-        commands.add(new CommandData("hello", "Example local admin command."));
 
         action.addCommands(commands).queue();
         OnStartup.LOG.info("Registered local slash commands");
-    }
-
-    public static void hello(SlashCommandEvent event) {
-        event.reply("Hi " + Objects.requireNonNull(event.getMember()).getEffectiveName() + "!").queue();
     }
 }

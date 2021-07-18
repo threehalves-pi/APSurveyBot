@@ -1,11 +1,13 @@
 package commands;
 
 import events.OnStartup;
+import jdk.jshell.execution.Util;
 import main.Main;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import utils.Bot;
+import utils.Colors;
 import utils.Utils;
 
 import java.awt.*;
@@ -18,17 +20,24 @@ public class GlobalCommands {
     public static void registerGlobalSlashCommands(CommandListUpdateAction action) {
         List<CommandData> commands = new ArrayList<>();
 
-        commands.add(new CommandData("ping", "Ping the bot."));
+        commands.add(new CommandData("source", "See AP Survey Bot on Github"));
         commands.add(new CommandData("help", "Get info about " + Bot.BOT_NAME));
 
         action.addCommands(commands).queue();
         OnStartup.LOG.info("Registered global slash commands");
     }
 
-    public static void ping(SlashCommandEvent event) {
-        event.reply(String.format("pong (%d)",
-                Duration.between(event.getTimeCreated(), OffsetDateTime.now()).toMillis()))
-                .queue();
+    public static void source(SlashCommandEvent event) {
+        event.reply(
+                Utils.makeEmbed(
+                        "Source Code",
+                        "I'm open source! You can view my code and even make pull requests on my github, " +
+                        "available at: " + Utils.link(Bot.GITHUB, Bot.GITHUB),
+                        Colors.WHITE,
+                        "",
+                        Bot.GITHUB,
+                        "Survey Bot on Github").buildMessage()
+        ).setEphemeral(true).queue();
     }
 
     public static void help(SlashCommandEvent event) {

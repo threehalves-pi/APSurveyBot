@@ -60,6 +60,7 @@ public class Bot {
     public static String FAQ_VOLUNTEER_FORM;
     public static String AP_STATS_FAQ;
     public static String SERVER_INVITE;
+    public static String GITHUB;
 
     // Discord Ids
     public static long BOT_ID;
