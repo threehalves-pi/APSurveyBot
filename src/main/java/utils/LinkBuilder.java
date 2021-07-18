@@ -22,7 +22,7 @@ import java.util.List;
  * To build a {@link LinkBuilder} with an attached link for sending to Discord, use {@link #buildMessage()}.
  */
 public class LinkBuilder extends EmbedBuilder {
-    public static final List<Button> buttons = new ArrayList<>();
+    public final List<Button> buttons = new ArrayList<>();
 
     public LinkBuilder() {
     }
