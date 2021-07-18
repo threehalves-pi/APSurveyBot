@@ -54,11 +54,6 @@ public class LocalCommands {
         }
     }
 
-    public static void addSlashCommands(CommandListUpdateAction action) {
-        // This CommandListUpdateAction is for a specific Guild, not global commands
-        action.addCommands(new CommandData("ping", "ping the bot").setDefaultEnabled(false)).queue();
-    }
-
     public static void update(SlashCommandEvent event) {
         MessageChannel channel;
 
@@ -82,7 +77,7 @@ public class LocalCommands {
 
     public static void purge(SlashCommandEvent event) {
         long count = Objects.requireNonNull(event.getOption("count")).getAsLong();
-        event.reply("Purging " + count + " messages from " + event.getChannel().getName() + ".")
+        event.reply("Purging " + count + " messages from " + event.getChannel().getName() + "...")
                 .setEphemeral(true).queue();
         event.getChannel().purgeMessages(event.getChannel().getHistory().retrievePast((int) count).complete());
     }
