@@ -3,6 +3,7 @@ package utils;
 import events.OnStartup;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Guild;
 
 import java.awt.Color;
 
@@ -55,8 +56,16 @@ public class Bot {
     public static String ACTIVITY_URL;
     public static Activity ACTIVITY;
 
+    // Links
+    public static String FAQ_VOLUNTEER_FORM;
+    public static String AP_STATS_FAQ;
+    public static String SERVER_INVITE;
+
     // Discord Ids
     public static long BOT_ID;
-    public static long DEVELOPMENT_SERVER;
+    public static long DEVELOPMENT_GUILD_ID;
     public static long LOG_CHANNEL;
+
+    // Discord entities
+    public static Guild DEVELOPMENT_GUILD;
 }

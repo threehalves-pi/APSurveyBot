@@ -52,9 +52,7 @@ public class OnStartup extends ListenerAdapter {
         if (Bot.LOAD_GLOBAL_COMMANDS)
             GlobalCommands.registerGlobalSlashCommands(Main.JDA.updateCommands());
         if (Bot.LOAD_LOCAL_COMMANDS)
-            LocalCommands.registerLocalSlashCommands(Objects.requireNonNull(
-                    Main.JDA.getGuildById(Bot.DEVELOPMENT_SERVER))
-                    .updateCommands());
+            LocalCommands.registerLocalSlashCommands(Bot.DEVELOPMENT_GUILD.updateCommands());
 
         // If a startup log message was enabled, send it
         if (Bot.ENABLE_STARTUP_MESSAGE)
@@ -89,8 +87,7 @@ public class OnStartup extends ListenerAdapter {
 
         // Send the message
         try {
-            Objects.requireNonNull(Objects.requireNonNull(Main.JDA
-                    .getGuildById(Bot.DEVELOPMENT_SERVER))
+            Objects.requireNonNull(Objects.requireNonNull(Bot.DEVELOPMENT_GUILD)
                     .getTextChannelById(Bot.LOG_CHANNEL))
                     .sendMessageEmbeds(
                             Utils.makeEmbed(
@@ -188,6 +185,10 @@ public class OnStartup extends ListenerAdapter {
         } catch (Exception e) {
             LOG.error("Invalid status. Failed to compile activity properly", e);
         }
+
+        // Get development server
+        Bot.DEVELOPMENT_GUILD = Main.JDA.getGuildById(Bot.DEVELOPMENT_GUILD_ID);
+        assert Bot.DEVELOPMENT_GUILD != null;
 
         // Log result to console
         int successes = map.values().stream().mapToInt(v -> (v ? 1 : 0)).sum();

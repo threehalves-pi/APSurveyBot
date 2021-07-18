@@ -2,6 +2,7 @@ package utils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.awt.*;
 
@@ -94,5 +95,78 @@ public class Utils {
      */
     public static EmbedBuilder makeEmbed(String title, String description, Color color) {
         return new EmbedBuilder().setTitle(title).setDescription(description).setColor(color);
+    }
+
+    /**
+     * This creates a {@link LinkBuilder}, which is simply an {@link EmbedBuilder} with the ability to attach link
+     * buttons for convenience.
+     *
+     * @param title       the title
+     * @param description the description
+     * @param color       the color
+     * @param url         the destination url
+     * @param label       the button label
+     * @return the {@link LinkBuilder}
+     */
+    public static LinkBuilder makeEmbed(String title, String description, Color color, String url, String label) {
+        return LinkBuilder.of(makeEmbed(title, description, color), url, label);
+    }
+
+    /**
+     * This creates a {@link LinkBuilder}, which is simply an {@link EmbedBuilder} with the ability to attach link
+     * buttons for convenience.
+     *
+     * @param title       the title
+     * @param description the description
+     * @param color       the color
+     * @param footer      the footer
+     * @param url         the destination url
+     * @param label       the button label
+     * @return the {@link LinkBuilder}
+     */
+    public static LinkBuilder makeEmbed(String title, String description, Color color,
+                                        String footer, String url, String label) {
+        return makeEmbed(title, description, color, url, label).setFooter(footer);
+    }
+
+    /**
+     * This creates a {@link LinkBuilder}, which is simply an {@link EmbedBuilder} with the ability to attach link
+     * buttons for convenience.
+     *
+     * @param title       the title
+     * @param description the description
+     * @param color       the color
+     * @param footer      the footer
+     * @param url         the destination url
+     * @param label       the button label
+     * @param fields one or more fields
+     * @return the {@link LinkBuilder}
+     */
+    public static LinkBuilder makeEmbed(String title, String description, Color color,
+                              String footer, String url, String label, MessageEmbed.Field... fields) {
+        LinkBuilder l = makeEmbed(title, description, color, footer, url, label);
+        for (MessageEmbed.Field field : fields)
+            l.addField(field);
+        return l;
+    }
+
+    /**
+     * Create a hyperlink for embeds.
+     *
+     * @param url  the destination url
+     * @param text the hyperlink text
+     * @return a formatted hyperlink
+     */
+    public static String link(String url, String text) {
+        return String.format("[%s](%s)", text, url);
+    }
+
+    /**
+     * This returns a formatted string for mentioning a Discord channel from its id.
+     * @param id the channel id
+     * @return the channel mention
+     */
+    public static String mentionChannel(long id) {
+        return String.format("<#%d>", id);
     }
 }
