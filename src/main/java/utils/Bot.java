@@ -61,6 +61,7 @@ public class Bot {
     public static String AP_STATS_FAQ;
     public static String SERVER_INVITE;
     public static String GITHUB;
+    public static String PRELIMINARY_SURVEY;
 
     // Discord Ids
     public static long BOT_ID;

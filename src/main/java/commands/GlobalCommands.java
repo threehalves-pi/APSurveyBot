@@ -1,8 +1,6 @@
 package commands;
 
 import events.OnStartup;
-import jdk.jshell.execution.Util;
-import main.Main;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
@@ -11,8 +9,6 @@ import utils.Colors;
 import utils.Utils;
 
 import java.awt.*;
-import java.time.Duration;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
