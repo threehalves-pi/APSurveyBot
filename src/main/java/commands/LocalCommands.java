@@ -79,4 +79,11 @@ public class LocalCommands {
                     .queue();
         }
     }
+
+    public static void purge(SlashCommandEvent event) {
+        long count = Objects.requireNonNull(event.getOption("count")).getAsLong();
+        event.reply("Purging " + count + " messages from " + event.getChannel().getName() + ".")
+                .setEphemeral(true).queue();
+        event.getChannel().purgeMessages(event.getChannel().getHistory().retrievePast((int) count).complete());
+    }
 }

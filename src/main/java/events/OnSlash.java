@@ -12,6 +12,7 @@ public class OnSlash extends ListenerAdapter {
             case "help" -> GlobalCommands.help(event);
             case "source" -> GlobalCommands.source(event);
             case "update" -> LocalCommands.update(event);
+            case "purge" -> LocalCommands.purge(event);
             default -> event
                     .reply("Sorry, I don't recognize that command. Please try again later.")
                     .setEphemeral(true)
