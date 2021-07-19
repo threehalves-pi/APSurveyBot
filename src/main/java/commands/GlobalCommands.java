@@ -8,6 +8,7 @@ import utils.Bot;
 import utils.Colors;
 import utils.Utils;
 
+import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class GlobalCommands {
         OnStartup.LOG.info("Registered global slash commands");
     }
 
-    public static void source(SlashCommandEvent event) {
+    public static void source(@Nonnull SlashCommandEvent event) {
         event.reply(
                 Utils.makeEmbed(
                         "Source Code",
@@ -36,7 +37,7 @@ public class GlobalCommands {
         ).setEphemeral(true).queue();
     }
 
-    public static void help(SlashCommandEvent event) {
+    public static void help(@Nonnull SlashCommandEvent event) {
         event.replyEmbeds(Utils.makeEmbed(
                 Bot.BOT_NAME + " Info",
                 "Hi, I'm " + Bot.BOT_NAME + "! " + Bot.BOT_DESCRIPTION,
