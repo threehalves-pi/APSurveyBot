@@ -22,6 +22,12 @@ public class LocalCommands {
     public static void registerLocalSlashCommands(CommandListUpdateAction action) {
         List<CommandData> commands = new ArrayList<>();
 
+        // Generic commands
+        commands.add(
+                new CommandData("id", "Get a user's Discord ID")
+                        .addOption(OptionType.USER, "user", "The user whose ID you want")
+        );
+
         // Admin/private commands
         commands.add(
                 new CommandData("update", "Update official channels")
@@ -33,10 +39,6 @@ public class LocalCommands {
                         .addOption(OptionType.INTEGER, "count",
                                 "The number of messages to purge", true)
                         .setDefaultEnabled(false)
-        );
-        commands.add(
-                new CommandData("id", "Get a user's Discord ID")
-                        .addOption(OptionType.USER, "user", "The user whose ID you want")
         );
 
         // Send slash commands and update permissions
@@ -67,7 +69,7 @@ public class LocalCommands {
             event.reply("Your Discord id is: `" + event.getUser().getId() + "`").setEphemeral(true).queue();
         else
             event.reply(user.getAsUser().getAsMention() + "'s Discord id is: `" +
-                        event.getUser().getId() + "`").setEphemeral(true).queue();
+                        user.getAsUser().getId() + "`").setEphemeral(true).queue();
     }
 
     public static void update(@Nonnull SlashCommandEvent event) {
